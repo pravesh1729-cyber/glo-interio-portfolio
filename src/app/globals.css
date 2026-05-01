@@ -18,7 +18,7 @@
   --color-gold: #b8976a;
 }
 
-* {
+*, *::before, *::after {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -33,9 +33,20 @@ body {
   background-color: var(--color-warm-white);
   color: var(--color-charcoal);
   overflow-x: hidden;
+  max-width: 100vw;
 }
 
-/* Elegant scrollbar */
+/* Force all sections to never overflow */
+section, header, footer, main, div {
+  max-width: 100vw;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Scrollbar */
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb { background: var(--color-gold); border-radius: 2px; }
@@ -45,7 +56,7 @@ body {
   color: white;
 }
 
-/* ===== NAVIGATION ===== */
+/* Nav link underline */
 .nav-link {
   position: relative;
   display: inline-block;
@@ -62,7 +73,7 @@ body {
 }
 .nav-link:hover::after { width: 100%; }
 
-/* ===== IMAGE HOVER ===== */
+/* Image hover zoom */
 .img-hover {
   overflow: hidden;
   position: relative;
@@ -74,33 +85,24 @@ body {
   transform: scale(1.05);
 }
 
-/* ===== REVEAL ANIMATIONS ===== */
-.reveal {
-  opacity: 0;
-  transform: translateY(60px);
-  transition: opacity 1s cubic-bezier(0.25, 0, 0.25, 1), transform 1s cubic-bezier(0.25, 0, 0.25, 1);
-}
-.reveal.visible {
-  opacity: 1;
-  transform: translateY(0);
-}
-
-/* ===== PREMIUM BUTTON ===== */
+/* Button — dark fill */
 .btn-primary {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  padding: 18px 48px;
-  font-size: 0.7rem;
-  letter-spacing: 4px;
+  padding: 16px 40px;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  text-decoration: none;
   color: var(--color-charcoal);
   background: transparent;
   border: 1px solid var(--color-charcoal);
   cursor: pointer;
   overflow: hidden;
-  transition: color 0.5s ease, border-color 0.5s ease;
+  transition: color 0.5s ease;
   font-family: var(--font-sans);
 }
 .btn-primary::before {
@@ -114,26 +116,26 @@ body {
   z-index: -1;
 }
 .btn-primary:hover { color: var(--color-warm-white); }
-.btn-primary:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+.btn-primary:hover::before { transform: scaleX(1); transform-origin: left; }
 
+/* Button — light fill */
 .btn-light {
   position: relative;
   display: inline-flex;
   align-items: center;
+  justify-content: center;
   gap: 12px;
-  padding: 18px 48px;
-  font-size: 0.7rem;
-  letter-spacing: 4px;
+  padding: 16px 40px;
+  font-size: 0.65rem;
+  letter-spacing: 3px;
   text-transform: uppercase;
+  text-decoration: none;
   color: white;
   background: transparent;
-  border: 1px solid rgba(255,255,255,0.3);
+  border: 1px solid rgba(255,255,255,0.25);
   cursor: pointer;
   overflow: hidden;
-  transition: color 0.5s ease, border-color 0.5s ease;
+  transition: color 0.5s ease;
   font-family: var(--font-sans);
 }
 .btn-light::before {
@@ -147,28 +149,24 @@ body {
   z-index: -1;
 }
 .btn-light:hover { color: var(--color-charcoal); }
-.btn-light:hover::before {
-  transform: scaleX(1);
-  transform-origin: left;
-}
+.btn-light:hover::before { transform: scaleX(1); transform-origin: left; }
 
-/* ===== HORIZONTAL GALLERY SCROLL ===== */
-.horizontal-scroll {
+/* Horizontal scroll strip */
+.thumb-strip {
   display: flex;
-  gap: 1.5rem;
+  gap: 0.5rem;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
   -webkit-overflow-scrolling: touch;
   scrollbar-width: none;
-  padding: 0 2rem;
 }
-.horizontal-scroll::-webkit-scrollbar { display: none; }
-.horizontal-scroll > * {
+.thumb-strip::-webkit-scrollbar { display: none; }
+.thumb-strip > * {
   scroll-snap-align: start;
   flex-shrink: 0;
 }
 
-/* ===== MARQUEE ===== */
+/* Marquee */
 @keyframes marquee {
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
@@ -178,30 +176,16 @@ body {
   will-change: transform;
 }
 
-/* ===== SMOOTH COUNTER ===== */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(30px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* ===== SECTION DIVIDER ===== */
-.section-line {
-  width: 1px;
-  height: 80px;
-  background: linear-gradient(to bottom, transparent, var(--color-gold), transparent);
-  margin: 0 auto;
-}
-
-/* ===== FORM STYLES ===== */
+/* Form fields */
 .form-field {
   position: relative;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 .form-field input,
 .form-field textarea {
   width: 100%;
-  padding: 20px 0 12px;
-  font-size: 0.95rem;
+  padding: 18px 0 10px;
+  font-size: 0.9rem;
   border: none;
   border-bottom: 1px solid rgba(0,0,0,0.1);
   background: transparent;
@@ -209,7 +193,6 @@ body {
   outline: none;
   transition: border-color 0.3s;
   font-family: inherit;
-  letter-spacing: 0.5px;
 }
 .form-field input:focus,
 .form-field textarea:focus {
@@ -217,9 +200,9 @@ body {
 }
 .form-field label {
   position: absolute;
-  top: 20px;
+  top: 18px;
   left: 0;
-  font-size: 0.75rem;
+  font-size: 0.7rem;
   color: var(--color-earth);
   letter-spacing: 2px;
   text-transform: uppercase;
@@ -231,15 +214,15 @@ body {
 .form-field textarea:focus ~ label,
 .form-field textarea:not(:placeholder-shown) ~ label {
   top: 0;
-  font-size: 0.6rem;
+  font-size: 0.55rem;
   color: var(--color-gold);
 }
 
-/* ===== PROJECT CARD OVERLAY ===== */
+/* Project overlay on hover */
 .project-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to top, rgba(26,24,21,0.85) 0%, rgba(26,24,21,0.1) 50%, transparent 100%);
+  background: linear-gradient(to top, rgba(26,24,21,0.8) 0%, rgba(26,24,21,0.1) 50%, transparent 100%);
   opacity: 0;
   transition: opacity 0.6s ease;
 }
@@ -250,8 +233,8 @@ body {
   bottom: 0;
   left: 0;
   right: 0;
-  padding: 3rem;
-  transform: translateY(20px);
+  padding: 2rem;
+  transform: translateY(15px);
   opacity: 0;
   transition: all 0.6s cubic-bezier(0.25, 0, 0.25, 1);
 }

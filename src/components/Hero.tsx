@@ -2,100 +2,125 @@
 
 import { useEffect, useState } from "react";
 
+const heroImages = [
+  "/images/projects/page-09.jpg",
+  "/images/projects/page-22.jpg",
+  "/images/projects/page-25.jpg",
+  "/images/projects/page-33.jpg",
+];
+
 export default function Hero() {
   const [ready, setReady] = useState(false);
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const t = setTimeout(() => setReady(true), 800);
+    const t = setTimeout(() => setReady(true), 600);
     return () => clearTimeout(t);
   }, []);
 
-  return (
-    <section className="relative h-screen w-full overflow-hidden bg-charcoal">
-      {/* Background image */}
-      <div className="absolute inset-0">
-        <img
-          src="/images/projects/page-09.jpg"
-          alt="The Sky Terrace by Glo Interio"
-          className="w-full h-full object-cover opacity-60"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-charcoal via-charcoal/20 to-charcoal/40" />
-      </div>
+  // Auto-rotate hero images
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrent((p) => (p + 1) % heroImages.length);
+    }, 5000);
+    return () => clearInterval(interval);
+  }, []);
 
-      {/* Content — bottom-left aligned like top studios */}
-      <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-16 md:pb-24">
+  return (
+    <section className="relative h-[100dvh] w-full overflow-hidden bg-charcoal">
+      {/* Cycling background images */}
+      {heroImages.map((src, i) => (
+        <div
+          key={src}
+          className="absolute inset-0 transition-opacity duration-[2000ms] ease-in-out"
+          style={{ opacity: current === i ? 1 : 0 }}
+        >
+          <img
+            src={src}
+            alt=""
+            className="w-full h-full object-cover scale-105"
+            style={{
+              transform: current === i ? "scale(1.05)" : "scale(1)",
+              transition: "transform 8s ease-out",
+            }}
+          />
+        </div>
+      ))}
+
+      {/* Dark gradient overlay */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/30" />
+
+      {/* Side accent line */}
+      <div
+        className="absolute left-6 md:left-10 top-1/4 bottom-1/4 w-[1px] bg-gradient-to-b from-transparent via-gold/30 to-transparent"
+        style={{ opacity: ready ? 1 : 0, transition: "opacity 1.5s ease 1.5s" }}
+      />
+
+      {/* Content */}
+      <div className="relative z-10 h-full max-w-[1400px] mx-auto px-6 md:px-10 flex flex-col justify-end pb-12 md:pb-20">
         {/* Tagline */}
         <div
-          className="overflow-hidden mb-4"
-          style={{ opacity: ready ? 1 : 0, transition: "opacity 0.8s ease 0.2s" }}
+          style={{ opacity: ready ? 1 : 0, transform: ready ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease 0.3s" }}
         >
-          <div className="flex items-center gap-4">
-            <div className="w-10 h-[1px] bg-gold" />
-            <span className="text-gold/80 text-[0.6rem] tracking-[0.4em] uppercase">
-              Interior Design Studio — Kathmandu
-            </span>
+          <span className="text-gold/70 text-[0.55rem] tracking-[0.5em] uppercase">
+            Interior Design Studio
+          </span>
+        </div>
+
+        {/* Big headline — each word reveals */}
+        <div className="mt-4 mb-6">
+          {["Crafting", "Spaces That", "Breathe"].map((line, i) => (
+            <div key={line} className="overflow-hidden">
+              <h1
+                className="font-serif text-white"
+                style={{
+                  fontSize: "clamp(2.5rem, 7.5vw, 6.5rem)",
+                  lineHeight: 1,
+                  letterSpacing: "-0.02em",
+                  transform: ready ? "translateY(0)" : "translateY(110%)",
+                  transition: `transform 0.9s cubic-bezier(0.16, 1, 0.3, 1) ${0.5 + i * 0.12}s`,
+                }}
+              >
+                {i === 1 ? (
+                  <>
+                    <em className="text-gold">Spaces</em> That
+                  </>
+                ) : (
+                  line
+                )}
+              </h1>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom row: tagline + CTA + image counter */}
+        <div
+          className="flex flex-col md:flex-row md:items-end md:justify-between gap-6 pt-4 border-t border-white/10"
+          style={{ opacity: ready ? 1 : 0, transition: "opacity 1s ease 1.3s" }}
+        >
+          <p className="text-white/35 text-sm max-w-md leading-relaxed">
+            Balancing luxury with calmness and elegance with warmth.
+            Residential, hospitality &amp; bespoke spaces.
+          </p>
+
+          <div className="flex items-center gap-8">
+            {/* Image dots */}
+            <div className="flex gap-2">
+              {heroImages.map((_, i) => (
+                <button
+                  key={i}
+                  onClick={() => setCurrent(i)}
+                  className={`w-2 h-2 rounded-full transition-all duration-500 ${
+                    current === i ? "bg-gold w-6" : "bg-white/20"
+                  }`}
+                />
+              ))}
+            </div>
+            <a href="#projects" className="btn-light">
+              View Work
+            </a>
           </div>
         </div>
-
-        {/* Headline */}
-        <div className="overflow-hidden">
-          <h1
-            className="font-serif text-white leading-[0.95]"
-            style={{
-              fontSize: "clamp(2.8rem, 8vw, 7rem)",
-              transform: ready ? "translateY(0)" : "translateY(100%)",
-              transition: "transform 1s cubic-bezier(0.25, 0, 0.25, 1) 0.4s",
-            }}
-          >
-            Crafting
-          </h1>
-        </div>
-        <div className="overflow-hidden">
-          <h1
-            className="font-serif text-white leading-[0.95]"
-            style={{
-              fontSize: "clamp(2.8rem, 8vw, 7rem)",
-              transform: ready ? "translateY(0)" : "translateY(100%)",
-              transition: "transform 1s cubic-bezier(0.25, 0, 0.25, 1) 0.55s",
-            }}
-          >
-            <em className="text-gold/80">Spaces</em> That
-          </h1>
-        </div>
-        <div className="overflow-hidden mb-8">
-          <h1
-            className="font-serif text-white leading-[0.95]"
-            style={{
-              fontSize: "clamp(2.8rem, 8vw, 7rem)",
-              transform: ready ? "translateY(0)" : "translateY(100%)",
-              transition: "transform 1s cubic-bezier(0.25, 0, 0.25, 1) 0.7s",
-            }}
-          >
-            Breathe
-          </h1>
-        </div>
-
-        {/* Subline + CTA */}
-        <div
-          className="flex flex-col md:flex-row md:items-end md:justify-between gap-8"
-          style={{ opacity: ready ? 1 : 0, transition: "opacity 1s ease 1.2s" }}
-        >
-          <p className="text-white/40 text-sm md:text-base max-w-md leading-relaxed tracking-wide">
-            Where comfort meets intention — designing homes that
-            balance luxury with calmness, and elegance with warmth.
-          </p>
-          <a href="#projects" className="btn-light shrink-0">
-            View Work
-          </a>
-        </div>
-      </div>
-
-      {/* Scroll line */}
-      <div
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 flex flex-col items-center"
-        style={{ opacity: ready ? 1 : 0, transition: "opacity 1s ease 1.5s" }}
-      >
-        <div className="w-[1px] h-16 bg-gradient-to-b from-transparent via-gold/40 to-gold" />
       </div>
     </section>
   );

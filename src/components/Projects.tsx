@@ -7,8 +7,7 @@ const projects = [
     id: 1,
     title: "The Sky Terrace",
     subtitle: "Rooftop Living",
-    description:
-      "A rooftop sanctuary focused on comfort, flow, and positive energy. Bamboo-clad ceilings, curated tropical greenery, rattan pendant lights, a custom bar with water feature wall, and a sunken fire pit lounge.",
+    description: "Bamboo-clad ceilings, tropical greenery, rattan pendants, a custom bar with water feature wall, and a sunken fire pit lounge.",
     images: [
       "/images/projects/page-09.jpg",
       "/images/projects/page-05.jpg",
@@ -17,14 +16,12 @@ const projects = [
       "/images/projects/page-08.jpg",
     ],
     year: "2024",
-    location: "Kathmandu",
   },
   {
     id: 2,
     title: "Warm Earth Apartment",
     subtitle: "Family Residence",
-    description:
-      "Warm earthy tones, wooden beam ceilings, custom bookshelf walls, a vibrant living area with orange sofa and teal accents, a daughter's pink floral bedroom, and a serene olive-green master suite.",
+    description: "Wooden beam ceilings, custom bookshelf walls, orange-sofa living area, daughter's pink floral bedroom, and olive-green master suite.",
     images: [
       "/images/projects/page-12.jpg",
       "/images/projects/page-13.jpg",
@@ -35,14 +32,12 @@ const projects = [
       "/images/projects/page-18.jpg",
     ],
     year: "2024",
-    location: "Kathmandu",
   },
   {
     id: 3,
     title: "Heritage Brick House",
     subtitle: "Independent Home",
-    description:
-      "Exposed brick walls, timber beam ceilings, a courtyard with lap pool, rattan-detailed kitchen, tropical guest room with mural wallpaper, family room with Egyptian-inspired wall art, and a daughter's studio.",
+    description: "Exposed brick, timber beams, courtyard with lap pool, rattan kitchen, tropical guest room, Egyptian-inspired family room.",
     images: [
       "/images/projects/page-22.jpg",
       "/images/projects/page-21.jpg",
@@ -58,14 +53,12 @@ const projects = [
       "/images/projects/page-32.jpg",
     ],
     year: "2023",
-    location: "Kathmandu",
   },
   {
     id: 4,
     title: "The Entertainment Suite",
     subtitle: "Bespoke Renovation",
-    description:
-      "F1-themed game room with race track wall art and pool table, curved onyx bar with mosaic tile backdrop, backlit vinyl record lounge, bold geometric-tiled foyer, and a music room.",
+    description: "F1-themed game room, curved onyx bar, backlit vinyl record lounge, geometric-tiled foyer, and music room.",
     images: [
       "/images/projects/page-33.jpg",
       "/images/projects/page-34.jpg",
@@ -76,83 +69,68 @@ const projects = [
       "/images/projects/page-39.jpg",
     ],
     year: "2023",
-    location: "Kathmandu",
   },
 ];
 
-function useInView(threshold = 0.15) {
+function ProjectBlock({ project, index }: { project: (typeof projects)[0]; index: number }) {
   const ref = useRef<HTMLDivElement>(null);
   const [visible, setVisible] = useState(false);
+  const [active, setActive] = useState(0);
+
   useEffect(() => {
     const el = ref.current;
     if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold });
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.08 });
     obs.observe(el);
     return () => obs.disconnect();
-  }, [threshold]);
-  return { ref, visible };
-}
-
-function ProjectSection({ project, index }: { project: (typeof projects)[0]; index: number }) {
-  const { ref, visible } = useInView(0.1);
-  const [activeImg, setActiveImg] = useState(0);
-  const scrollRef = useRef<HTMLDivElement>(null);
-
-  const scrollTo = (i: number) => {
-    setActiveImg(i);
-    scrollRef.current?.children[i]?.scrollIntoView({ behavior: "smooth", inline: "start", block: "nearest" });
-  };
+  }, []);
 
   return (
     <div
       ref={ref}
       className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-16"}`}
-      style={{ transitionDelay: "150ms" }}
     >
-      {/* Project header */}
-      <div className="flex flex-col md:flex-row md:items-end md:justify-between mb-8 gap-4">
-        <div>
-          <span className="text-gold text-[0.6rem] tracking-[0.4em] uppercase block mb-2">
-            {String(index + 1).padStart(2, "0")} — {project.subtitle}
-          </span>
-          <h3 className="font-serif text-3xl md:text-5xl text-charcoal tracking-tight">
-            {project.title}
-          </h3>
+      {/* Number + Title bar */}
+      <div className="flex items-baseline gap-6 mb-6">
+        <span className="font-serif text-7xl md:text-8xl text-charcoal/[0.06] leading-none select-none">
+          {String(index + 1).padStart(2, "0")}
+        </span>
+        <div className="flex-1">
+          <span className="text-gold text-[0.55rem] tracking-[0.4em] uppercase block mb-1">{project.subtitle}</span>
+          <h3 className="font-serif text-2xl md:text-4xl text-charcoal tracking-tight">{project.title}</h3>
         </div>
-        <div className="flex gap-8 text-[0.6rem] tracking-[0.2em] uppercase text-earth/60">
-          <span>{project.year}</span>
-          <span>{project.location}</span>
-          <span>{project.images.length} Views</span>
-        </div>
+        <span className="text-earth/30 text-[0.6rem] tracking-[0.2em] uppercase hidden md:block">{project.year}</span>
       </div>
 
-      {/* Hero image — full width cinematic */}
-      <div className="img-hover rounded-sm mb-4 cursor-pointer" onClick={() => scrollTo((activeImg + 1) % project.images.length)}>
-        <div className="aspect-[21/9] md:aspect-[2.4/1] overflow-hidden rounded-sm">
+      {/* Main image */}
+      <div
+        className="img-hover rounded-sm cursor-pointer mb-3"
+        onClick={() => setActive((active + 1) % project.images.length)}
+      >
+        <div className="aspect-[16/9] overflow-hidden rounded-sm bg-cream">
           <img
-            src={project.images[activeImg]}
-            alt={`${project.title} — view ${activeImg + 1}`}
-            className="w-full h-full object-cover"
+            src={project.images[active]}
+            alt={`${project.title} — view ${active + 1}`}
+            className="w-full h-full object-cover object-center"
           />
         </div>
         <div className="project-overlay rounded-sm" />
         <div className="project-info">
-          <p className="text-white/70 text-sm max-w-lg leading-relaxed">
+          <p className="text-white/60 text-xs md:text-sm max-w-md leading-relaxed">
             {project.description}
           </p>
         </div>
       </div>
 
-      {/* Thumbnail strip — horizontal scroll */}
-      <div ref={scrollRef} className="horizontal-scroll pb-2" style={{ padding: 0, gap: "0.5rem" }}>
+      {/* Thumbnail strip */}
+      <div className="thumb-strip">
         {project.images.map((img, i) => (
           <button
             key={i}
-            onClick={() => scrollTo(i)}
-            className={`relative flex-shrink-0 overflow-hidden rounded-sm transition-all duration-500 ${
-              activeImg === i ? "ring-1 ring-gold opacity-100" : "opacity-40 hover:opacity-70"
+            onClick={() => setActive(i)}
+            className={`w-16 h-10 md:w-24 md:h-14 rounded-sm overflow-hidden transition-all duration-300 ${
+              active === i ? "ring-1 ring-gold ring-offset-1 ring-offset-warm-white opacity-100" : "opacity-30 hover:opacity-60"
             }`}
-            style={{ width: "clamp(80px, 10vw, 120px)", aspectRatio: "16/10" }}
           >
             <img src={img} alt="" className="w-full h-full object-cover" />
           </button>
@@ -163,33 +141,39 @@ function ProjectSection({ project, index }: { project: (typeof projects)[0]; ind
 }
 
 export default function Projects() {
-  const { ref, visible } = useInView(0.05);
+  const ref = useRef<HTMLDivElement>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.05 });
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
-    <section id="projects" className="py-24 md:py-40 px-6 md:px-10">
+    <section id="projects" className="py-20 md:py-32 px-6 md:px-10">
       <div className="max-w-[1400px] mx-auto">
-        {/* Section intro */}
         <div
           ref={ref}
-          className={`mb-20 md:mb-28 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
+          className={`flex items-end justify-between mb-16 md:mb-24 transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"}`}
         >
-          <div className="flex items-center gap-4 mb-4">
-            <div className="w-10 h-[1px] bg-gold" />
-            <span className="text-gold text-[0.6rem] tracking-[0.4em] uppercase">Selected Work</span>
+          <div>
+            <div className="flex items-center gap-4 mb-3">
+              <div className="w-10 h-[1px] bg-gold" />
+              <span className="text-gold text-[0.55rem] tracking-[0.4em] uppercase">Selected Work</span>
+            </div>
+            <h2 className="font-serif text-4xl md:text-5xl text-charcoal tracking-tight">Projects</h2>
           </div>
-          <h2 className="font-serif text-4xl md:text-6xl text-charcoal tracking-tight mb-4">
-            Projects
-          </h2>
-          <p className="text-earth/60 text-sm md:text-base max-w-xl leading-relaxed">
-            From intimate apartments to expansive homes and bespoke entertainment
-            spaces — each crafted to support how people live, rest, and grow.
-          </p>
+          <span className="text-earth/30 text-[0.55rem] tracking-[0.2em] uppercase hidden md:block">
+            {projects.length} Projects
+          </span>
         </div>
 
-        {/* Projects */}
-        <div className="space-y-32 md:space-y-44">
+        <div className="space-y-24 md:space-y-36">
           {projects.map((p, i) => (
-            <ProjectSection key={p.id} project={p} index={i} />
+            <ProjectBlock key={p.id} project={p} index={i} />
           ))}
         </div>
       </div>
