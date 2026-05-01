@@ -12,11 +12,11 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen w-full overflow-hidden">
-      {/* Background image — warm earthy interior matching Mamta's design style */}
+      {/* Background — actual terrace project render */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1600607687939-ce8a6c25118c?q=80&w=2000&auto=format&fit=crop"
-          alt="Luxury warm interior with natural materials"
+          src="/images/projects/page-09.jpg"
+          alt="The Sky Terrace — Glo Interio project"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-gradient-to-b from-charcoal/60 via-charcoal/30 to-charcoal/80" />
@@ -26,15 +26,13 @@ export default function Hero() {
       <div className="relative z-10 h-full flex flex-col justify-end pb-20 md:pb-28 px-6 md:px-16 lg:px-24 max-w-7xl mx-auto">
         <div
           className={`transition-all duration-1000 delay-500 ${
-            loaded
-              ? "opacity-100 translate-y-0"
-              : "opacity-0 translate-y-10"
+            loaded ? "opacity-100 translate-y-0" : "opacity-0 translate-y-10"
           }`}
         >
           <div className="flex items-center gap-4 mb-6">
             <div className="w-12 h-[1px] bg-gold" />
             <span className="text-gold text-xs tracking-[5px] uppercase">
-              Interior Design Studio
+              Glo Interio — Interior Design Studio
             </span>
           </div>
 

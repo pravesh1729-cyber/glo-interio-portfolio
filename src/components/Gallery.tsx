@@ -4,40 +4,40 @@ import { useEffect, useRef, useState } from "react";
 
 const images = [
   {
-    src: "https://images.unsplash.com/photo-1600210492486-724fe5c67fb0?q=80&w=800&auto=format&fit=crop",
-    alt: "Tropical terrace with rattan furniture and lush greenery",
+    src: "/images/projects/page-05.jpg",
+    alt: "Tropical terrace with rattan furniture and bamboo ceiling",
     span: "col-span-1 row-span-2",
     label: "Terrace Lounge",
   },
   {
-    src: "https://images.unsplash.com/photo-1616594039964-ae9021a400a0?q=80&w=800&auto=format&fit=crop",
-    alt: "Warm bedroom with layered lighting and upholstered headboard",
+    src: "/images/projects/page-12.jpg",
+    alt: "Warm living area with orange sofa and bookshelf wall",
     span: "col-span-1 row-span-1",
-    label: "Master Bedroom",
+    label: "Living & Dining",
   },
   {
-    src: "https://images.unsplash.com/photo-1556909114-f6e7ad7d3136?q=80&w=800&auto=format&fit=crop",
-    alt: "Kitchen with natural wood cabinetry and island",
+    src: "/images/projects/page-24.jpg",
+    alt: "Kitchen with natural wood cabinetry and timber beams",
     span: "col-span-1 row-span-1",
     label: "Kitchen",
   },
   {
-    src: "https://images.unsplash.com/photo-1600585154526-990dced4db0d?q=80&w=800&auto=format&fit=crop",
-    alt: "Living room with exposed brick and wooden beams",
+    src: "/images/projects/page-22.jpg",
+    alt: "Living room with exposed brick walls",
     span: "col-span-1 row-span-1",
-    label: "Living Area",
+    label: "Heritage Living",
   },
   {
-    src: "https://images.unsplash.com/photo-1540518614846-7eded433c457?q=80&w=800&auto=format&fit=crop",
-    alt: "Daughter's bedroom with warm pink tones and study desk",
+    src: "/images/projects/page-17.jpg",
+    alt: "Master bedroom with olive green headboard wall",
     span: "col-span-1 row-span-2",
-    label: "Daughter's Room",
+    label: "Master Suite",
   },
   {
-    src: "https://images.unsplash.com/photo-1615529328331-f8917597711f?q=80&w=800&auto=format&fit=crop",
-    alt: "Dining area with pendant lights and wooden table",
+    src: "/images/projects/page-33.jpg",
+    alt: "Curved bar with mosaic tile and onyx counter",
     span: "col-span-1 row-span-1",
-    label: "Dining & Bar",
+    label: "Bespoke Bar",
   },
 ];
 

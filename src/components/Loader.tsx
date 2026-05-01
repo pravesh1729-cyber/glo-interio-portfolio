@@ -54,20 +54,24 @@ export default function Loader() {
         transform: exiting ? "translateY(-100%)" : "translateY(0)",
       }}
     >
-      <span className="font-serif text-4xl md:text-5xl text-white tracking-wider mb-2">
-        MAMTA
-        <span style={{ color: "#c9a96e" }}>.</span>
-      </span>
+      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
+        <span className="font-serif" style={{ fontSize: "2.5rem", color: "#fff", letterSpacing: "0.1em" }}>
+          GLO
+        </span>
+        <span className="font-serif" style={{ fontSize: "2.5rem", color: "#c9a96e", letterSpacing: "0.1em" }}>
+          INTERIO
+        </span>
+      </div>
       <span
         style={{
           color: "rgba(255,255,255,0.3)",
-          fontSize: "0.7rem",
+          fontSize: "0.65rem",
           letterSpacing: "5px",
           textTransform: "uppercase",
           marginBottom: "3rem",
         }}
       >
-        Interior Designer
+        By Mamta Agarwal
       </span>
 
       <div
@@ -82,22 +86,11 @@ export default function Loader() {
           style={{
             height: "100%",
             background: "#c9a96e",
-            width: `${progress}%`,
+            width: `${Math.min(progress, 100)}%`,
             transition: "width 0.1s linear",
           }}
         />
       </div>
-      <span
-        style={{
-          color: "rgba(255,255,255,0.2)",
-          fontSize: "0.7rem",
-          letterSpacing: "3px",
-          marginTop: "1rem",
-          fontVariantNumeric: "tabular-nums",
-        }}
-      >
-        {Math.min(progress, 100)}%
-      </span>
     </div>
   );
 }

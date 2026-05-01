@@ -15,16 +15,23 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Mamta Agarwal — Interior Designer",
+  title: "Glo Interio by Mamta Agarwal — Interior Designer",
   description:
-    "Award-worthy interior design portfolio showcasing luxury residential, commercial, and terrace projects. Based in Kathmandu with international design sensibility.",
+    "Luxury interior design studio by Mamta Agarwal. Specializing in residential, terrace, and bespoke entertainment spaces. Based in Kathmandu, Nepal.",
   keywords: [
     "interior designer",
+    "Glo Interio",
+    "Mamta Agarwal",
     "luxury interiors",
     "Kathmandu",
     "residential design",
-    "Mamta Agarwal",
+    "terrace design",
   ],
+  openGraph: {
+    title: "Glo Interio by Mamta Agarwal",
+    description: "Crafting spaces that breathe — luxury interior design studio",
+    type: "website",
+  },
 };
 
 export default function RootLayout({

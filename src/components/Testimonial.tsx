@@ -18,15 +18,12 @@ export default function Testimonial() {
   }, []);
 
   return (
-    <section
-      ref={ref}
-      className="relative py-28 md:py-40 overflow-hidden"
-    >
-      {/* Background */}
+    <section ref={ref} className="relative py-28 md:py-40 overflow-hidden">
+      {/* Background — actual project image */}
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1600585154340-be6161a56a0c?q=80&w=2000&auto=format&fit=crop"
-          alt="Interior background"
+          src="/images/projects/page-25.jpg"
+          alt="Heritage house master bedroom"
           className="w-full h-full object-cover"
         />
         <div className="absolute inset-0 bg-charcoal/85" />
@@ -37,7 +34,6 @@ export default function Testimonial() {
           visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
         }`}
       >
-        {/* Quote mark */}
         <span className="font-serif text-gold/30 text-8xl md:text-9xl leading-none block mb-4">
           &ldquo;
         </span>
@@ -54,7 +50,7 @@ export default function Testimonial() {
             Mamta Agarwal
           </span>
           <span className="text-white/40 text-xs tracking-[2px]">
-            Interior Designer
+            Founder, Glo Interio
           </span>
         </div>
       </div>

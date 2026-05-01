@@ -21,7 +21,9 @@ export default function Navbar() {
 
   useEffect(() => {
     document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => { document.body.style.overflow = ""; };
+    return () => {
+      document.body.style.overflow = "";
+    };
   }, [mobileOpen]);
 
   return (
@@ -35,20 +37,20 @@ export default function Navbar() {
       >
         <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
           {/* Logo */}
-          <a href="#" className="group">
+          <a href="#" className="group flex items-center gap-2">
             <span
               className={`font-serif text-xl tracking-wider transition-colors duration-300 ${
                 scrolled ? "text-charcoal" : "text-white"
               }`}
             >
-              MAMTA
+              GLO
             </span>
             <span
               className={`font-serif text-xl tracking-wider transition-colors duration-300 ${
                 scrolled ? "text-gold" : "text-gold"
               }`}
             >
-              .
+              INTERIO
             </span>
           </a>
 
@@ -67,6 +69,18 @@ export default function Navbar() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://www.instagram.com/glointerio"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={`nav-link text-xs tracking-[3px] uppercase transition-colors duration-300 ${
+                scrolled
+                  ? "text-charcoal/70 hover:text-charcoal"
+                  : "text-white/80 hover:text-white"
+              }`}
+            >
+              Instagram
+            </a>
           </div>
 
           {/* Hamburger */}
@@ -125,6 +139,14 @@ export default function Navbar() {
             {link.label}
           </a>
         ))}
+        <a
+          href="https://www.instagram.com/glointerio"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="text-gold font-serif text-xl tracking-wider"
+        >
+          @glointerio
+        </a>
       </div>
     </>
   );
