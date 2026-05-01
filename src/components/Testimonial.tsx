@@ -15,26 +15,35 @@ export default function Testimonial() {
   }, []);
 
   return (
-    <section ref={ref} className="relative py-32 md:py-44 overflow-hidden">
-      <div className="absolute inset-0">
-        <img src="/images/projects/page-25.jpg" alt="" className="w-full h-full object-cover" />
-        <div className="absolute inset-0 bg-charcoal/90" />
+    <section ref={ref} style={{ position: "relative", padding: "100px 24px", overflow: "hidden" }}>
+      <div style={{ position: "absolute", inset: 0 }}>
+        <img src="/images/projects/page-25.jpg" alt="" style={{ width: "100%", height: "100%", objectFit: "cover" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(26,24,21,0.88)" }} />
       </div>
 
       <div
-        className={`relative max-w-3xl mx-auto px-6 md:px-10 text-center transition-all duration-1000 ${
-          visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
-        }`}
+        ref={ref}
+        style={{
+          position: "relative",
+          maxWidth: 700,
+          margin: "0 auto",
+          textAlign: "center",
+          opacity: visible ? 1 : 0,
+          transform: visible ? "translateY(0)" : "translateY(20px)",
+          transition: "all 1s ease",
+        }}
       >
-        <div className="w-[1px] h-12 bg-gold/40 mx-auto mb-10" />
-        <p className="font-serif text-xl md:text-3xl text-white/90 leading-relaxed tracking-tight italic">
+        <div style={{ width: 1, height: 40, background: "rgba(184,151,106,0.3)", margin: "0 auto 32px" }} />
+
+        <p className="font-serif" style={{ fontSize: "clamp(1.1rem, 2.5vw, 1.6rem)", color: "rgba(255,255,255,0.85)", lineHeight: 1.6, fontStyle: "italic" }}>
           &ldquo;Every detail is carefully planned to balance luxury with calmness,
           and elegance with comfort. A home should support the way you live,
           rest, and grow — that is what I design for.&rdquo;
         </p>
-        <div className="mt-10">
-          <span className="text-gold text-[0.6rem] tracking-[0.4em] uppercase block">Mamta Agarwal</span>
-          <span className="text-white/25 text-[0.55rem] tracking-[0.3em] uppercase mt-1 block">Founder, Glo Interio</span>
+
+        <div style={{ marginTop: 32 }}>
+          <div style={{ color: "#b8976a", fontSize: "0.6rem", letterSpacing: "0.4em", textTransform: "uppercase" }}>Mamta Agarwal</div>
+          <div style={{ color: "rgba(255,255,255,0.2)", fontSize: "0.55rem", letterSpacing: "0.3em", textTransform: "uppercase", marginTop: 4 }}>Founder, Glo Interio</div>
         </div>
       </div>
     </section>

@@ -16,91 +16,62 @@ export default function Contact() {
   }, []);
 
   return (
-    <section id="contact" ref={ref} className="py-24 md:py-40 bg-cream">
-      <div className="max-w-[1400px] mx-auto px-6 md:px-10">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 lg:gap-24">
-          {/* Left */}
-          <div className={`transition-all duration-1000 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
-            <div className="flex items-center gap-4 mb-4">
-              <div className="w-10 h-[1px] bg-gold" />
-              <span className="text-gold text-[0.6rem] tracking-[0.4em] uppercase">Get in Touch</span>
+    <section id="contact" ref={ref} style={{ padding: "80px 24px", background: "#f5f0e8", overflow: "hidden" }}>
+      <div style={{ maxWidth: 1200, margin: "0 auto" }}>
+        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16">
+          {/* Left column */}
+          <div style={{ flex: "0 0 auto", maxWidth: 420, opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease" }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 8 }}>
+              <div style={{ width: 32, height: 1, background: "#b8976a" }} />
+              <span style={{ color: "#b8976a", fontSize: "0.6rem", letterSpacing: "0.4em", textTransform: "uppercase" }}>Get in Touch</span>
             </div>
 
-            <h2 className="font-serif text-4xl md:text-5xl text-charcoal tracking-tight leading-tight mb-6">
-              Let&apos;s Create<br />
-              <em className="text-gold/80">Something Beautiful</em>
+            <h2 className="font-serif" style={{ fontSize: "clamp(1.8rem, 4vw, 2.5rem)", color: "#1a1815", lineHeight: 1.2, marginBottom: 16 }}>
+              Let&apos;s Create
+              <br />
+              <em style={{ color: "rgba(184,151,106,0.7)" }}>Something Beautiful</em>
             </h2>
 
-            <p className="text-earth/50 text-sm leading-relaxed max-w-md mb-12">
+            <p style={{ color: "rgba(139,115,85,0.5)", fontSize: "0.85rem", lineHeight: 1.7, marginBottom: 32 }}>
               Whether you&apos;re planning a new home, renovating a space, or need
-              design consultation with Vastu orientation — I&apos;d love to hear
-              about your project.
+              design consultation — I&apos;d love to hear about your project.
             </p>
 
-            <div className="space-y-8">
+            <div style={{ display: "flex", flexDirection: "column", gap: 20 }}>
               {[
                 { label: "Email", value: "glointeriobymamta@gmail.com", href: "mailto:glointeriobymamta@gmail.com" },
                 { label: "Phone", value: "+91 95609 18430", href: "tel:+919560918430" },
                 { label: "Instagram", value: "@glointerio", href: "https://www.instagram.com/glointerio" },
-                { label: "Location", value: "Kathmandu, Nepal", href: undefined },
+                { label: "Location", value: "Kathmandu, Nepal" },
               ].map((item) => (
                 <div key={item.label}>
-                  <span className="text-[0.55rem] tracking-[0.3em] uppercase text-earth/40 block mb-1">{item.label}</span>
+                  <div style={{ fontSize: "0.55rem", letterSpacing: "0.3em", textTransform: "uppercase", color: "rgba(139,115,85,0.3)", marginBottom: 2 }}>{item.label}</div>
                   {item.href ? (
-                    <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="font-serif text-lg text-charcoal hover:text-gold transition-colors duration-300">
+                    <a href={item.href} target={item.href.startsWith("http") ? "_blank" : undefined} rel="noopener noreferrer" className="font-serif" style={{ fontSize: "1rem", color: "#1a1815", textDecoration: "none" }}>
                       {item.value}
                     </a>
                   ) : (
-                    <span className="font-serif text-lg text-charcoal">{item.value}</span>
+                    <span className="font-serif" style={{ fontSize: "1rem", color: "#1a1815" }}>{item.value}</span>
                   )}
                 </div>
               ))}
             </div>
-
-            {/* Services */}
-            <div className="mt-12">
-              <span className="text-[0.55rem] tracking-[0.3em] uppercase text-earth/40 block mb-3">Services</span>
-              <div className="flex flex-wrap gap-2">
-                {["Residential Design", "Space Planning", "Vastu Consultation", "3D Visualization", "Project Management"].map((s) => (
-                  <span key={s} className="text-[0.55rem] tracking-[0.2em] uppercase text-earth/50 border border-charcoal/10 px-4 py-2 rounded-full">
-                    {s}
-                  </span>
-                ))}
-              </div>
-            </div>
           </div>
 
-          {/* Right — Form */}
-          <div className={`transition-all duration-1000 delay-200 ${visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"}`}>
+          {/* Right column — Form */}
+          <div style={{ flex: 1, minWidth: 0, opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)", transition: "all 0.8s ease 0.2s" }}>
             {submitted ? (
-              <div className="h-full flex flex-col items-center justify-center text-center py-20">
-                <span className="font-serif text-3xl text-charcoal mb-4">Thank you</span>
-                <p className="text-earth/50 text-sm">I&apos;ll get back to you within 24 hours.</p>
+              <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", height: "100%", textAlign: "center", padding: "60px 0" }}>
+                <span className="font-serif" style={{ fontSize: "1.5rem", color: "#1a1815", marginBottom: 8 }}>Thank you</span>
+                <p style={{ color: "rgba(139,115,85,0.5)", fontSize: "0.85rem" }}>I&apos;ll get back to you within 24 hours.</p>
               </div>
             ) : (
-              <form
-                onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}
-                className="space-y-2"
-              >
-                <div className="form-field">
-                  <input type="text" placeholder=" " required autoComplete="name" />
-                  <label>Your Name</label>
-                </div>
-                <div className="form-field">
-                  <input type="email" placeholder=" " required autoComplete="email" />
-                  <label>Email Address</label>
-                </div>
-                <div className="form-field">
-                  <input type="text" placeholder=" " />
-                  <label>Project Type (e.g. Apartment, House, Office)</label>
-                </div>
-                <div className="form-field">
-                  <textarea rows={4} placeholder=" " className="resize-none" />
-                  <label>Tell me about your vision</label>
-                </div>
-                <button type="submit" className="btn-primary w-full md:w-auto mt-4">
-                  Send Message
-                </button>
+              <form onSubmit={(e) => { e.preventDefault(); setSubmitted(true); }}>
+                <div className="form-field"><input type="text" placeholder=" " required /><label>Your Name</label></div>
+                <div className="form-field"><input type="email" placeholder=" " required /><label>Email Address</label></div>
+                <div className="form-field"><input type="text" placeholder=" " /><label>Project Type</label></div>
+                <div className="form-field"><textarea rows={4} placeholder=" " style={{ resize: "none" }} /><label>Tell me about your vision</label></div>
+                <button type="submit" className="btn-primary" style={{ width: "100%", maxWidth: 280 }}>Send Message</button>
               </form>
             )}
           </div>
