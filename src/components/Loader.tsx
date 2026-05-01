@@ -4,40 +4,35 @@ import { useEffect, useState, useRef } from "react";
 
 export default function Loader() {
   const [progress, setProgress] = useState(0);
-  const [exiting, setExiting] = useState(false);
-  const [done, setDone] = useState(false);
-  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+  const [phase, setPhase] = useState<"loading" | "exiting" | "done">("loading");
+  const intervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
 
   useEffect(() => {
     intervalRef.current = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
+      setProgress((p) => {
+        if (p >= 100) {
           if (intervalRef.current) clearInterval(intervalRef.current);
           return 100;
         }
-        return prev + 4;
+        return p + 3;
       });
-    }, 30);
-    return () => {
-      if (intervalRef.current) clearInterval(intervalRef.current);
-    };
+    }, 25);
+    return () => { if (intervalRef.current) clearInterval(intervalRef.current); };
   }, []);
 
   useEffect(() => {
-    if (progress >= 100) {
-      const t1 = setTimeout(() => setExiting(true), 300);
-      return () => clearTimeout(t1);
+    if (progress >= 100 && phase === "loading") {
+      setTimeout(() => setPhase("exiting"), 200);
     }
-  }, [progress]);
+  }, [progress, phase]);
 
   useEffect(() => {
-    if (exiting) {
-      const t2 = setTimeout(() => setDone(true), 700);
-      return () => clearTimeout(t2);
+    if (phase === "exiting") {
+      setTimeout(() => setPhase("done"), 800);
     }
-  }, [exiting]);
+  }, [phase]);
 
-  if (done) return null;
+  if (phase === "done") return null;
 
   return (
     <div
@@ -45,51 +40,64 @@ export default function Loader() {
         position: "fixed",
         inset: 0,
         zIndex: 9999,
-        backgroundColor: "#2d2a26",
+        background: "#1a1815",
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
         justifyContent: "center",
-        transition: "transform 0.7s cubic-bezier(0.76, 0, 0.24, 1)",
-        transform: exiting ? "translateY(-100%)" : "translateY(0)",
+        transition: "clip-path 0.8s cubic-bezier(0.76, 0, 0.24, 1)",
+        clipPath: phase === "exiting" ? "inset(0 0 100% 0)" : "inset(0 0 0 0)",
       }}
     >
-      <div style={{ display: "flex", alignItems: "center", gap: "0.5rem", marginBottom: "0.5rem" }}>
-        <span className="font-serif" style={{ fontSize: "2.5rem", color: "#fff", letterSpacing: "0.1em" }}>
-          GLO
-        </span>
-        <span className="font-serif" style={{ fontSize: "2.5rem", color: "#c9a96e", letterSpacing: "0.1em" }}>
-          INTERIO
-        </span>
-      </div>
-      <span
-        style={{
-          color: "rgba(255,255,255,0.3)",
-          fontSize: "0.65rem",
-          letterSpacing: "5px",
-          textTransform: "uppercase",
-          marginBottom: "3rem",
-        }}
-      >
-        By Mamta Agarwal
-      </span>
-
-      <div
-        style={{
-          width: "12rem",
-          height: "1px",
-          background: "rgba(255,255,255,0.1)",
-          position: "relative",
-        }}
-      >
+      <div style={{ textAlign: "center" }}>
+        <div style={{ marginBottom: "4px", overflow: "hidden" }}>
+          <span
+            className="font-serif"
+            style={{
+              display: "inline-block",
+              fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
+              color: "white",
+              letterSpacing: "0.2em",
+              fontWeight: 400,
+            }}
+          >
+            GLO
+          </span>
+          <span style={{ display: "inline-block", width: "0.5em" }} />
+          <span
+            className="font-serif"
+            style={{
+              display: "inline-block",
+              fontSize: "clamp(1.5rem, 4vw, 2.5rem)",
+              color: "#b8976a",
+              letterSpacing: "0.2em",
+              fontWeight: 400,
+            }}
+          >
+            INTERIO
+          </span>
+        </div>
         <div
           style={{
-            height: "100%",
-            background: "#c9a96e",
-            width: `${Math.min(progress, 100)}%`,
-            transition: "width 0.1s linear",
+            fontSize: "0.6rem",
+            letterSpacing: "0.4em",
+            color: "rgba(255,255,255,0.25)",
+            textTransform: "uppercase",
+            marginBottom: "3rem",
           }}
-        />
+        >
+          By Mamta Agarwal
+        </div>
+        <div style={{ width: "160px", height: "1px", background: "rgba(255,255,255,0.08)", margin: "0 auto" }}>
+          <div
+            style={{
+              height: "100%",
+              width: `${Math.min(progress, 100)}%`,
+              background: "#b8976a",
+              transition: "width 0.08s linear",
+            }}
+          />
+        </div>
       </div>
     </div>
   );

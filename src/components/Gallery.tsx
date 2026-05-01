@@ -3,42 +3,14 @@
 import { useEffect, useRef, useState } from "react";
 
 const images = [
-  {
-    src: "/images/projects/page-05.jpg",
-    alt: "Tropical terrace with rattan furniture and bamboo ceiling",
-    span: "col-span-1 row-span-2",
-    label: "Terrace Lounge",
-  },
-  {
-    src: "/images/projects/page-12.jpg",
-    alt: "Warm living area with orange sofa and bookshelf wall",
-    span: "col-span-1 row-span-1",
-    label: "Living & Dining",
-  },
-  {
-    src: "/images/projects/page-24.jpg",
-    alt: "Kitchen with natural wood cabinetry and timber beams",
-    span: "col-span-1 row-span-1",
-    label: "Kitchen",
-  },
-  {
-    src: "/images/projects/page-22.jpg",
-    alt: "Living room with exposed brick walls",
-    span: "col-span-1 row-span-1",
-    label: "Heritage Living",
-  },
-  {
-    src: "/images/projects/page-17.jpg",
-    alt: "Master bedroom with olive green headboard wall",
-    span: "col-span-1 row-span-2",
-    label: "Master Suite",
-  },
-  {
-    src: "/images/projects/page-33.jpg",
-    alt: "Curved bar with mosaic tile and onyx counter",
-    span: "col-span-1 row-span-1",
-    label: "Bespoke Bar",
-  },
+  { src: "/images/projects/page-05.jpg", label: "Terrace Lounge", span: "col-span-2 row-span-2" },
+  { src: "/images/projects/page-17.jpg", label: "Master Bedroom", span: "col-span-1 row-span-1" },
+  { src: "/images/projects/page-33.jpg", label: "Bespoke Bar", span: "col-span-1 row-span-1" },
+  { src: "/images/projects/page-24.jpg", label: "Kitchen", span: "col-span-1 row-span-1" },
+  { src: "/images/projects/page-29.jpg", label: "Guest Room", span: "col-span-1 row-span-2" },
+  { src: "/images/projects/page-22.jpg", label: "Heritage Living", span: "col-span-1 row-span-1" },
+  { src: "/images/projects/page-15.jpg", label: "Daughter's Room", span: "col-span-1 row-span-1" },
+  { src: "/images/projects/page-39.jpg", label: "Vinyl Lounge", span: "col-span-1 row-span-1" },
 ];
 
 export default function Gallery() {
@@ -46,50 +18,37 @@ export default function Gallery() {
   const [visible, setVisible] = useState(false);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) setVisible(true);
-      },
-      { threshold: 0.05 }
-    );
-    if (ref.current) observer.observe(ref.current);
-    return () => observer.disconnect();
+    const el = ref.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) setVisible(true); }, { threshold: 0.05 });
+    obs.observe(el);
+    return () => obs.disconnect();
   }, []);
 
   return (
-    <section ref={ref} className="py-24 md:py-36 px-6 md:px-12 lg:px-24 bg-warm-white">
-      <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <span className="text-gold text-xs tracking-[5px] uppercase">
-            Gallery
-          </span>
-          <h2 className="font-serif text-4xl md:text-6xl text-charcoal mt-4 tracking-tight">
-            Design Moments
-          </h2>
-          <div className="w-16 h-[1px] bg-gold mx-auto mt-6" />
+    <section ref={ref} className="py-24 md:py-40 px-6 md:px-10 bg-cream">
+      <div className="max-w-[1400px] mx-auto">
+        <div className="flex items-center gap-4 mb-4">
+          <div className="w-10 h-[1px] bg-gold" />
+          <span className="text-gold text-[0.6rem] tracking-[0.4em] uppercase">Gallery</span>
         </div>
+        <h2 className="font-serif text-4xl md:text-6xl text-charcoal tracking-tight mb-12">
+          Design Moments
+        </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[250px] gap-4">
+        <div className="grid grid-cols-2 md:grid-cols-4 auto-rows-[200px] md:auto-rows-[240px] gap-3">
           {images.map((img, i) => (
             <div
               key={i}
-              className={`${img.span} project-card rounded-sm transition-all duration-700 ${
-                visible
-                  ? "opacity-100 translate-y-0"
-                  : "opacity-0 translate-y-8"
+              className={`${img.span} img-hover rounded-sm transition-all duration-700 ${
+                visible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-8"
               }`}
-              style={{ transitionDelay: `${i * 100}ms` }}
+              style={{ transitionDelay: `${i * 80}ms` }}
             >
-              <img
-                src={img.src}
-                alt={img.alt}
-                className="w-full h-full object-cover rounded-sm"
-              />
-              <div className="overlay rounded-sm" />
-              <div className="card-content absolute bottom-0 left-0 right-0 p-6">
-                <span className="text-white text-xs tracking-[3px] uppercase">
-                  {img.label}
-                </span>
+              <img src={img.src} alt={img.label} className="w-full h-full object-cover rounded-sm" />
+              <div className="project-overlay rounded-sm" />
+              <div className="project-info" style={{ padding: "1.5rem" }}>
+                <span className="text-white/90 text-[0.6rem] tracking-[0.3em] uppercase">{img.label}</span>
               </div>
             </div>
           ))}

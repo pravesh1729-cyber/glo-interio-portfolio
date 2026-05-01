@@ -1,26 +1,26 @@
 "use client";
 
-const words = [
+const items = [
   "Residential",
-  "Commercial",
-  "Hospitality",
   "Terrace Design",
+  "Luxury Homes",
   "Space Planning",
-  "Luxury Interiors",
-  "Furniture Design",
+  "Hospitality",
+  "Bespoke Furniture",
   "Material Curation",
+  "3D Visualization",
 ];
 
 export default function Marquee() {
   return (
-    <div className="py-6 bg-charcoal overflow-hidden">
+    <div className="py-5 bg-charcoal overflow-hidden border-t border-b border-white/5">
       <div className="marquee-track flex items-center whitespace-nowrap">
-        {[...words, ...words, ...words, ...words].map((word, i) => (
-          <span key={i} className="flex items-center">
-            <span className="text-white/30 text-xs tracking-[4px] uppercase mx-8 font-sans">
-              {word}
+        {[...items, ...items, ...items, ...items].map((item, i) => (
+          <span key={i} className="inline-flex items-center">
+            <span className="text-white/20 text-[0.6rem] tracking-[0.35em] uppercase px-10">
+              {item}
             </span>
-            <span className="text-gold/40 text-lg">◆</span>
+            <span className="text-gold/20 text-[8px]">&#9670;</span>
           </span>
         ))}
       </div>
