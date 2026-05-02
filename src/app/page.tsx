@@ -150,15 +150,6 @@ export default function Home() {
             </R>
           </div>
 
-          {/* Full-width project image strip */}
-          <R>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4, marginBottom: 64 }}>
-              <img src="/images/projects/page-05.jpg" alt="Terrace design" style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover" }} />
-              <img src="/images/projects/page-25.jpg" alt="Master bedroom" style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover" }} />
-              <img src="/images/projects/page-33.jpg" alt="Bar design" style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover" }} />
-            </div>
-          </R>
-
           {/* Stats bar */}
           <R>
             <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, marginBottom: 64, background: "#eee" }}>
