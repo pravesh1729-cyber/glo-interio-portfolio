@@ -111,33 +111,22 @@ export default function Home() {
           {projects.map(p => <PG key={p.title} p={p} />)}
         </section>
 
-        {/* ═══════════════════════════════════════════
-            ABOUT — Complete redesign
-            ═══════════════════════════════════════════ */}
+        {/* ABOUT */}
         <section id="about" style={{ paddingTop: 40, paddingBottom: 120 }}>
 
-          {/* Section label */}
           <R>
             <p style={{ fontSize: 12, letterSpacing: "0.25em", textTransform: "uppercase", color: "#999", marginBottom: 48 }}>About the Designer</p>
           </R>
 
-          {/* Full-width statement image */}
+          {/* Name + Title */}
           <R>
-            <div style={{ position: "relative", marginBottom: 64 }}>
-              <img
-                src="/images/projects/page-01.jpg"
-                alt="Mamta Agarwal — Glo Interio"
-                style={{ width: "100%", aspectRatio: "16/7", objectFit: "cover" }}
-              />
-              <div style={{ position: "absolute", inset: 0, background: "linear-gradient(to top, rgba(0,0,0,0.5) 0%, transparent 60%)" }} />
-              <div style={{ position: "absolute", bottom: "clamp(20px, 4vw, 48px)", left: "clamp(20px, 4vw, 48px)", right: "clamp(20px, 4vw, 48px)" }}>
-                <h2 className="font-serif" style={{ fontSize: "clamp(28px, 5vw, 52px)", fontWeight: 400, color: "#fff", lineHeight: 1.15 }}>
-                  Mamta Agarwal
-                </h2>
-                <p style={{ fontSize: 14, color: "rgba(255,255,255,0.6)", marginTop: 8, letterSpacing: "0.1em" }}>
-                  Founder &amp; Principal Designer, Glo Interio
-                </p>
-              </div>
+            <div style={{ marginBottom: 48 }}>
+              <h2 className="font-serif" style={{ fontSize: "clamp(32px, 5vw, 56px)", fontWeight: 400, color: "#222", lineHeight: 1.15, marginBottom: 12 }}>
+                Mamta Agarwal
+              </h2>
+              <p style={{ fontSize: 15, color: "#999", letterSpacing: "0.08em" }}>
+                Founder &amp; Principal Designer, Glo Interio
+              </p>
             </div>
           </R>
 
@@ -148,18 +137,27 @@ export default function Home() {
                 I believe design should feel like home before you even move in.
               </h3>
               <p style={{ fontSize: 15, lineHeight: 1.85, color: "#666" }}>
-                Every project begins with listening — understanding not just what a space should look like, but how it should make people feel. I design for real life: the morning coffee ritual, the quiet evening read, the way sunlight falls at 4pm. These are the moments that shape a home, and these are the moments I design around.
+                Every project begins with listening. Understanding not just what a space should look like, but how it should make people feel. I design for real life: the morning coffee ritual, the quiet evening read, the way sunlight falls at 4pm. These are the moments that shape a home, and these are the moments I design around.
               </p>
             </R>
             <R delay={0.1} className="flex-1 min-w-0">
               <p style={{ fontSize: 15, lineHeight: 1.85, color: "#666", marginBottom: 20 }}>
-                With over five years of hands-on experience spanning residential apartments, independent homes, hospitality spaces, and healthcare facilities, I bring a rare combination of creative vision and practical execution. From the first sketch to the final walkthrough, I&apos;m there — coordinating vendors, selecting materials, managing timelines, and ensuring every detail is exactly right.
+                With over five years of hands-on experience spanning residential apartments, independent homes, hospitality spaces, and healthcare facilities, I bring a rare combination of creative vision and practical execution. From the first sketch to the final walkthrough, I am there. Coordinating vendors, selecting materials, managing timelines, and ensuring every detail is exactly right.
               </p>
               <p style={{ fontSize: 15, lineHeight: 1.85, color: "#666" }}>
-                My work is rooted in warmth: natural materials, layered textures, earthy palettes, and spaces that feel both refined and deeply comfortable. Whether it&apos;s a terrace wrapped in bamboo and greenery or a living room anchored by exposed brick and timber beams — every space tells a story.
+                My work is rooted in warmth: natural materials, layered textures, earthy palettes, and spaces that feel both refined and deeply comfortable. Whether it&apos;s a terrace wrapped in bamboo and greenery or a living room anchored by exposed brick and timber beams, every space tells a story.
               </p>
             </R>
           </div>
+
+          {/* Full-width project image strip */}
+          <R>
+            <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 4, marginBottom: 64 }}>
+              <img src="/images/projects/page-05.jpg" alt="Terrace design" style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover" }} />
+              <img src="/images/projects/page-25.jpg" alt="Master bedroom" style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover" }} />
+              <img src="/images/projects/page-33.jpg" alt="Bar design" style={{ width: "100%", aspectRatio: "4/3", objectFit: "cover" }} />
+            </div>
+          </R>
 
           {/* Stats bar */}
           <R>
@@ -185,9 +183,9 @@ export default function Home() {
               <h4 style={{ fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#999", marginBottom: 24 }}>Experience</h4>
 
               <div style={{ borderTop: "1px solid #eee", paddingTop: 20, marginBottom: 28 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6, gap: 8 }}>
                   <h5 style={{ fontSize: 16, fontWeight: 600, color: "#222" }}>Innovations Design Studio</h5>
-                  <span style={{ fontSize: 12, color: "#999" }}>2021 — Present</span>
+                  <span style={{ fontSize: 12, color: "#999" }}>2021 – Present</span>
                 </div>
                 <p style={{ fontSize: 13, color: "#999", marginBottom: 12 }}>Interior Designer · Siliguri</p>
                 <ul style={{ fontSize: 14, lineHeight: 1.8, color: "#666", paddingLeft: 18, listStyleType: "disc" }}>
@@ -199,9 +197,9 @@ export default function Home() {
               </div>
 
               <div style={{ borderTop: "1px solid #eee", paddingTop: 20 }}>
-                <div style={{ display: "flex", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6 }}>
+                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6, gap: 8 }}>
                   <h5 style={{ fontSize: 16, fontWeight: 600, color: "#222" }}>Ravish Vohra Homes</h5>
-                  <span style={{ fontSize: 12, color: "#999" }}>Jul — Dec 2020</span>
+                  <span style={{ fontSize: 12, color: "#999" }}>Jul – Dec 2020</span>
                 </div>
                 <p style={{ fontSize: 13, color: "#999", marginBottom: 12 }}>Interior Designer · Delhi</p>
                 <ul style={{ fontSize: 14, lineHeight: 1.8, color: "#666", paddingLeft: 18, listStyleType: "disc" }}>
@@ -216,15 +214,14 @@ export default function Home() {
               <h4 style={{ fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#999", marginBottom: 24 }}>Education</h4>
 
               {[
-                { year: "2020", title: "Post Graduate Diploma in Interior Design", school: "Pearl Academy, Delhi", note: "India's leading design institution" },
-                { year: "2017", title: "B.Com (Honours)", school: "Hansraj College, University of Delhi", note: "One of India's top commerce colleges" },
-                { year: "2026", title: "Vastu Shastra & Numerology", school: "Academy of Vedic Vidya", note: "Ongoing — blending traditional spatial science with modern design" },
-              ].map((ed, i) => (
+                { year: "2020", title: "Post Graduate Diploma in Interior Design", school: "Pearl Academy, Delhi" },
+                { year: "2017", title: "B.Com (Honours)", school: "Hansraj College, University of Delhi" },
+                { year: "Ongoing", title: "Vastu Shastra & Numerology", school: "Academy of Vedic Vidya" },
+              ].map((ed) => (
                 <div key={ed.year} style={{ borderTop: "1px solid #eee", paddingTop: 20, marginBottom: 24 }}>
                   <span style={{ fontSize: 12, color: "#999" }}>{ed.year}</span>
                   <h5 style={{ fontSize: 16, fontWeight: 600, color: "#222", marginTop: 4, marginBottom: 2 }}>{ed.title}</h5>
                   <p style={{ fontSize: 14, color: "#666" }}>{ed.school}</p>
-                  <p style={{ fontSize: 13, color: "#999", fontStyle: "italic", marginTop: 4 }}>{ed.note}</p>
                 </div>
               ))}
 
@@ -237,19 +234,6 @@ export default function Home() {
               </div>
             </R>
           </div>
-
-          {/* Reference */}
-          <R>
-            <div style={{ borderTop: "1px solid #eee", paddingTop: 32 }}>
-              <h4 style={{ fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#999", marginBottom: 12 }}>Reference</h4>
-              <p style={{ fontSize: 15, color: "#222" }}>
-                <strong>Rishhi Saraf</strong> — Director, Innovations Design Studio
-              </p>
-              <p style={{ fontSize: 14, color: "#666" }}>
-                +977 985 103 3895 · innovations73@gmail.com
-              </p>
-            </div>
-          </R>
         </section>
 
         {/* QUOTE */}
