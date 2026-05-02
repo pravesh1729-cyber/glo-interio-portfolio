@@ -151,34 +151,33 @@ export default function Home() {
             </R>
           </div>
 
-          {/* Stats bar */}
+          {/* Quote */}
           <R>
-            <div style={{ display: "grid", gridTemplateColumns: "repeat(4, 1fr)", gap: 1, marginBottom: 64, background: "#eee" }}>
+            <div style={{ textAlign: "center", padding: "48px 0", maxWidth: 600, margin: "0 auto" }}>
+              <p className="font-serif" style={{ fontSize: "clamp(18px, 2.5vw, 24px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.7, color: "#444" }}>
+                &ldquo;Every detail is carefully planned to balance luxury with calmness, and elegance with comfort.&rdquo;
+              </p>
+            </div>
+          </R>
+
+          {/* Stats */}
+          <R>
+            <div style={{ display: "flex", justifyContent: "space-between", borderTop: "1px solid #eee", borderBottom: "1px solid #eee", padding: "32px 0" }}>
               {[
-                ["6+", "Projects Delivered"],
-                ["5+", "Years of Experience"],
-                ["3", "Projects at Once"],
-                ["100%", "Client Satisfaction"],
-              ].map(([v, l]) => (
-                <div key={l} style={{ background: "#fff", padding: "clamp(20px, 3vw, 40px)", textAlign: "center" }}>
-                  <div className="font-serif" style={{ fontSize: "clamp(28px, 4vw, 48px)", fontWeight: 400, color: "#222", marginBottom: 4 }}>{v}</div>
-                  <div style={{ fontSize: 11, color: "#999", letterSpacing: "0.1em", textTransform: "uppercase" }}>{l}</div>
+                ["6+", "Projects"],
+                ["5+", "Years"],
+                ["3", "Parallel"],
+                ["100%", "Satisfaction"],
+              ].map(([v, l], i) => (
+                <div key={l} style={{ textAlign: "center", flex: 1, borderLeft: i > 0 ? "1px solid #eee" : "none" }}>
+                  <div className="font-serif" style={{ fontSize: "clamp(24px, 3vw, 36px)", fontWeight: 400, color: "#222" }}>{v}</div>
+                  <div style={{ fontSize: 10, color: "#bbb", letterSpacing: "0.12em", textTransform: "uppercase", marginTop: 4 }}>{l}</div>
                 </div>
               ))}
             </div>
           </R>
 
         </section>
-
-        {/* QUOTE */}
-        <R>
-          <div style={{ textAlign: "center", padding: "60px 0 80px", borderTop: "1px solid #eee", borderBottom: "1px solid #eee" }}>
-            <p className="font-serif" style={{ fontSize: "clamp(18px, 2.5vw, 26px)", fontWeight: 400, fontStyle: "italic", lineHeight: 1.7, color: "#444", maxWidth: 640, margin: "0 auto" }}>
-              &ldquo;Every detail is carefully planned to balance luxury with calmness, and elegance with comfort.&rdquo;
-            </p>
-            <p style={{ marginTop: 20, fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#999" }}>Mamta Agarwal</p>
-          </div>
-        </R>
 
         {/* CONTACT */}
         <section id="contact" style={{ paddingTop: 80, paddingBottom: 100 }}>
