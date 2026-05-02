@@ -168,64 +168,6 @@ export default function Home() {
             </div>
           </R>
 
-          {/* Experience + Education side by side */}
-          <div className="flex flex-col lg:flex-row gap-12 lg:gap-20" style={{ marginBottom: 64 }}>
-            {/* Experience */}
-            <R className="flex-1 min-w-0">
-              <h4 style={{ fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#999", marginBottom: 24 }}>Experience</h4>
-
-              <div style={{ borderTop: "1px solid #eee", paddingTop: 20, marginBottom: 28 }}>
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6, gap: 8 }}>
-                  <h5 style={{ fontSize: 16, fontWeight: 600, color: "#222" }}>Innovations Design Studio</h5>
-                  <span style={{ fontSize: 12, color: "#999" }}>2021 – Present</span>
-                </div>
-                <p style={{ fontSize: 13, color: "#999", marginBottom: 12 }}>Interior Designer · Siliguri</p>
-                <ul style={{ fontSize: 14, lineHeight: 1.8, color: "#666", paddingLeft: 18, listStyleType: "disc" }}>
-                  <li>Designed and executed 6 apartments, 1 independent home, 1 office, and 1 hospital section</li>
-                  <li>Managed up to 3 projects simultaneously from concept through handover</li>
-                  <li>Full ownership of client presentations, 3D renders, AutoCAD drawings, and site execution</li>
-                  <li>Vendor coordination, material selection, and budget management</li>
-                </ul>
-              </div>
-
-              <div style={{ borderTop: "1px solid #eee", paddingTop: 20 }}>
-                <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "space-between", alignItems: "baseline", marginBottom: 6, gap: 8 }}>
-                  <h5 style={{ fontSize: 16, fontWeight: 600, color: "#222" }}>Ravish Vohra Homes</h5>
-                  <span style={{ fontSize: 12, color: "#999" }}>Jul – Dec 2020</span>
-                </div>
-                <p style={{ fontSize: 13, color: "#999", marginBottom: 12 }}>Interior Designer · Delhi</p>
-                <ul style={{ fontSize: 14, lineHeight: 1.8, color: "#666", paddingLeft: 18, listStyleType: "disc" }}>
-                  <li>Design concepts and client presentations</li>
-                  <li>Team collaboration on residential projects</li>
-                </ul>
-              </div>
-            </R>
-
-            {/* Education */}
-            <R delay={0.1} className="flex-1 min-w-0">
-              <h4 style={{ fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#999", marginBottom: 24 }}>Education</h4>
-
-              {[
-                { year: "2020", title: "Post Graduate Diploma in Interior Design", school: "Pearl Academy, Delhi" },
-                { year: "2017", title: "B.Com (Honours)", school: "Hansraj College, University of Delhi" },
-                { year: "Ongoing", title: "Vastu Shastra & Numerology", school: "Academy of Vedic Vidya" },
-              ].map((ed) => (
-                <div key={ed.year} style={{ borderTop: "1px solid #eee", paddingTop: 20, marginBottom: 24 }}>
-                  <span style={{ fontSize: 12, color: "#999" }}>{ed.year}</span>
-                  <h5 style={{ fontSize: 16, fontWeight: 600, color: "#222", marginTop: 4, marginBottom: 2 }}>{ed.title}</h5>
-                  <p style={{ fontSize: 14, color: "#666" }}>{ed.school}</p>
-                </div>
-              ))}
-
-              {/* Skills */}
-              <h4 style={{ fontSize: 12, letterSpacing: "0.2em", textTransform: "uppercase", color: "#999", marginBottom: 16, marginTop: 16 }}>Technical Skills</h4>
-              <div style={{ display: "flex", flexWrap: "wrap", gap: 8 }}>
-                {["AutoCAD", "SketchUp", "Enscape", "Space Planning", "Furniture Design", "3D Visualization", "Adobe InDesign", "Material Curation", "Vendor Management", "Project Management"].map(s => (
-                  <span key={s} style={{ fontSize: 12, color: "#666", border: "1px solid #e5e5e5", padding: "6px 16px", borderRadius: 3 }}>{s}</span>
-                ))}
-              </div>
-            </R>
-          </div>
         </section>
 
         {/* QUOTE */}
