@@ -61,7 +61,7 @@ function PG({ p }: { p: typeof projects[0] }) {
 export default function Home() {
   const [loaded, setLoaded] = useState(false);
   const [hi, setHi] = useState(0);
-  const hImgs = ["/images/projects/page-09.jpg", "/images/projects/page-22.jpg", "/images/projects/page-25.jpg", "/images/projects/page-33.jpg"];
+  const hImgs = ["/images/bedroom/bed-07.jpg", "/images/projects/page-08.jpg", "/images/apartment/apt-02.jpg", "/images/projects/page-29.jpg"];
 
   useEffect(() => { setTimeout(() => setLoaded(true), 100); }, []);
   useEffect(() => { const t = setInterval(() => setHi(p => (p + 1) % hImgs.length), 5000); return () => clearInterval(t); }, [hImgs.length]);
