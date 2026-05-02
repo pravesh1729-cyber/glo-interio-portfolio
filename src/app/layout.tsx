@@ -17,13 +17,13 @@ const playfair = Playfair_Display({
 export const metadata: Metadata = {
   title: "Glo Interio by Mamta Agarwal — Interior Designer",
   description:
-    "Luxury interior design studio by Mamta Agarwal. Specializing in residential, terrace, and bespoke entertainment spaces. Based in Kathmandu, Nepal.",
+    "Luxury interior design studio by Mamta Agarwal. Specializing in residential, terrace, and bespoke entertainment spaces. Based in Siliguri, India.",
   keywords: [
     "interior designer",
     "Glo Interio",
     "Mamta Agarwal",
     "luxury interiors",
-    "Kathmandu",
+    "Siliguri",
     "residential design",
     "terrace design",
   ],
